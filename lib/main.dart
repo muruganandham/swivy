@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swivy/counter_bloc.dart';
-import 'package:swivy/counter_event.dart';
+import 'package:swivy/counter_state.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,7 +47,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _bloc = CounterBloc();
+  final _counterBloc = CounterBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -62,46 +63,46 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: StreamBuilder(
-              stream: _bloc.counter,
-              initialData: 0,
-              builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                return Column(
-                  // Column is also layout widget. It takes a list of children and
-                  // arranges them vertically. By default, it sizes itself to fit its
-                  // children horizontally, and tries to be as tall as its parent.
-                  //
-                  // Invoke "debug painting" (press "p" in the console, choose the
-                  // "Toggle Debug Paint" action from the Flutter Inspector in Android
-                  // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-                  // to see the wireframe for each widget.
-                  //
-                  // Column has various properties to control how it sizes itself and
-                  // how it positions its children. Here we use mainAxisAlignment to
-                  // center the children vertically; the main axis here is the vertical
-                  // axis because Columns are vertical (the cross axis would be
-                  // horizontal).
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'You have pushed the button this many times:',
-                    ),
-                    Text(
-                      '${snapshot.data}',
-                      style: Theme.of(context).textTheme.display1,
-                    ),
-                  ],
-                );
-              })),
+      body: BlocBuilder(
+          bloc: _counterBloc,
+          builder: (context, CounterState state) {
+            return Center(
+              child: Column(
+                // Column is a layout widget. It takes a list of children and
+                // arranges them vertically. By default, it sizes itself to fit its
+                // children horizontally, and tries to be as tall as its parent.
+                //
+                // Invoke "debug painting" (press "p" in the console, choose the
+                // "Toggle Debug Paint" action from the Flutter Inspector in Android
+                // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+                // to see the wireframe for each widget.
+                //
+                // Column has various properties to control how it sizes itself and
+                // how it positions its children. Here we use mainAxisAlignment to
+                // center the children vertically; the main axis here is the vertical
+                // axis because Columns are vertical (the cross axis would be
+                // horizontal).
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'You have pushed the button this many times:',
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '${state.counter}',
+                    style: Theme.of(context).textTheme.display1,
+                  ),
+                ],
+              ),
+            );
+          }),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: () =>
-                _bloc.counterEventSink.add(IncrementCounterEvent()),
+            onPressed: () => _counterBloc.onIncrement(),
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ),
@@ -109,8 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 10,
           ),
           FloatingActionButton(
-            onPressed: () =>
-                _bloc.counterEventSink.add(DecrementCounterEvent()),
+            onPressed: () => _counterBloc.onDecrement(),
             tooltip: 'Decrement',
             child: Icon(Icons.remove),
           ),
@@ -122,6 +122,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void dispose() {
     super.dispose();
-    _bloc.dispose();
+    _counterBloc.dispose();
   }
 }
