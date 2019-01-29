@@ -9,9 +9,9 @@ authentication, dependencies, and UX that may or may not work for you.
 Features & benefits of this starter will be listed here as they are developed.
 
 * Example implementation of the BLoC pattern using
-  `[flutter_bloc](https://pub.dartlang.org/packages/flutter_bloc)`.
-* Use of `[Equatable](https://pub.dartlang.org/packages/equatable)` to reduce boilerplate code for equality checking.
-* Use of `[meta](https://pub.dartlang.org/packages/meta)` annotations like
+  [`flutter_bloc`](https://pub.dartlang.org/packages/flutter_bloc).
+* Use of [`Equatable`](https://pub.dartlang.org/packages/equatable) to reduce boilerplate code for equality checking.
+* Use of [`meta`](https://pub.dartlang.org/packages/meta) annotations like
   `@immutable` for better static analysis.
 
 ## Resources
