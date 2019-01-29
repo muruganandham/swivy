@@ -51,12 +51,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
+    // The build() method is rerun every time setState is called.jj
     //
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    return new BlocProvider(
+        bloc: _counterBloc, child: CounterWidget(widget: widget));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _counterBloc.dispose();
+  }
+}
+
+class CounterWidget extends StatelessWidget {
+  const CounterWidget({
+    Key key,
+    @required this.widget,
+  }) : super(key: key);
+
+  final MyHomePage widget;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -64,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: BlocBuilder(
-          bloc: _counterBloc,
+          bloc: BlocProvider.of<CounterBloc>(context),
           builder: (context, CounterState state) {
             return Center(
               child: Column(
@@ -102,7 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: () => _counterBloc.onIncrement(),
+            onPressed: () =>
+                BlocProvider.of<CounterBloc>(context).onIncrement(),
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ),
@@ -110,18 +131,13 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 10,
           ),
           FloatingActionButton(
-            onPressed: () => _counterBloc.onDecrement(),
+            onPressed: () =>
+                BlocProvider.of<CounterBloc>(context).onDecrement(),
             tooltip: 'Decrement',
             child: Icon(Icons.remove),
           ),
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _counterBloc.dispose();
   }
 }
