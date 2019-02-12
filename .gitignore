@@ -30,6 +30,7 @@ build/
 
 # Firebase related
 GoogleService-Info.plist
+google-services.json
 
 # Android related
 **/android/**/gradle-wrapper.jar
