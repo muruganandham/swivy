@@ -30,7 +30,7 @@ will get you started:
 ![Adding a Firebase Project](/screenshots/img1.png?raw=true)
 ![Add an iOS and Android App to Your Firebase Project](/screenshots/img2.png?raw=true)
 ![Download Config File for iOS](/screenshots/img3.png?raw=true)
-![Download Config File for Android](/screenshots/img5.png?raw=true)
+![Download Config File for Android](/screenshots/img4.png?raw=true)
 
 ## Certificate for Google Play Services
 
