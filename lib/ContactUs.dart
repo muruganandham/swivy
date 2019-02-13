@@ -5,10 +5,10 @@ class ContactUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contact us'),
+        title: Text('Contact Us'),
       ),
       body: Center(
-        child: Text('Contact us'),
+        child: Text('Contact Us'),
       ),
     );
   }

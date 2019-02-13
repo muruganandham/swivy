@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import './TermsConditions.dart';
-import './AboutUs.dart';
+import './About.dart';
 import './ContactUs.dart';
 
 class HomePage extends StatefulWidget {
@@ -62,25 +62,21 @@ class CounterWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.blue,
               )),
-          _tile(context, 'Home', '', Icons.home, _goHome),
+          _tile(context, 'About', '', FontAwesomeIcons.info, () {
+            Navigator.pop(context);
+            _aboutUs(context);
+          }),
           new Divider(),
-          new ListTile(
-            title: new Text('About us'),
-            onTap: () {
-              Navigator.pop(context);
-              _aboutus(context);
-            },
-          ),
+          _tile(context, 'Contact Us', '', Icons.email, () {
+            Navigator.pop(context);
+            _contactUs(context);
+          }),
           new Divider(),
-          _tile(context, 'Contact us', '', Icons.smartphone, _contactus),
-          new Divider(),
-          new ListTile(
-            title: new Text('Terms & Condition'),
-            onTap: () {
-              Navigator.pop(context);
-              _termsConditions(context);
-            },
-          ),
+          _tile(context, 'Terms & Conditions', '', FontAwesomeIcons.fileAlt,
+              () {
+            Navigator.pop(context);
+            _termsConditions(context);
+          }),
           new Divider(),
         ],
       )),
@@ -95,20 +91,22 @@ class CounterWidget extends StatelessWidget {
                     height: 10,
                   ),
                   Text("Hi, ${this.widget.fbuser.displayName}"),
+                  SizedBox(
+                    height: 10,
+                  ),
                   RaisedButton(
                     child: const Text('Log Out'),
                     onPressed: () {
-                      //logout
+                      // logout
                       this.widget.onTap();
                       Navigator.pop(context);
                     },
                   ),
-                  new Icon(FontAwesomeIcons.solidLaugh),
                   SizedBox(
                     height: 40,
                   ),
                   Text(
-                    'You have pushed the button this many times:',
+                    'Your counter value is:',
                   ),
                   SizedBox(
                     height: 10,
@@ -146,49 +144,42 @@ class CounterWidget extends StatelessWidget {
     );
   }
 
-  //user defind methods
+  // user defind methods
 
-  void _contactus() async {
-    print("Contact us...");
-    Navigator.of(context1)
-        .push(MaterialPageRoute(builder: (context) => ContactUs()));
+  void _contactUs(BuildContext context1) async {
+    print("Contact Us...");
+    Navigator.push(
+        context1, MaterialPageRoute(builder: (context) => ContactUs()));
   }
 
-  void _goHome() async {
-    print("Go to Home...");
-  }
-
-  void _aboutus(BuildContext context1) async {
-    print('about us..');
+  void _aboutUs(BuildContext context1) async {
+    print('About Us...');
     Navigator.push(
       context1,
-      MaterialPageRoute(builder: (context) => AboutUs()),
+      MaterialPageRoute(builder: (context) => About()),
     );
   }
 
   void _termsConditions(BuildContext context1) async {
-    print('terms and conditions..');
+    print('Terms & Conditions...');
     Navigator.push(
       context1,
       MaterialPageRoute(builder: (context) => TermsConditions()),
     );
   }
 
-  //custom list tile
-  ListTile _tile(BuildContext context1, String title, String subtitle,
-          IconData icon, VoidCallback methodname) =>
+  // custom list tile
+  ListTile _tile(BuildContext context, String title, String subtitle,
+          IconData icon, VoidCallback onTap) =>
       ListTile(
         title: Text(
           title,
         ),
         subtitle: (subtitle.length == 0) ? null : Text(subtitle),
-        onTap: () {
-          Navigator.pop(context1);
-          methodname();
-        },
+        onTap: onTap,
         leading: Icon(
           icon,
-          color: Colors.blue[400],
+          color: Colors.grey[600],
         ),
       );
 }
