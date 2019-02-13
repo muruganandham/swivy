@@ -9,7 +9,6 @@ import './TermsConditions.dart';
 import './AboutUs.dart';
 import './ContactUs.dart';
 
-
 class HomePage extends StatefulWidget {
   final FirebaseUser fbuser;
   final VoidCallback onTap;
@@ -63,7 +62,7 @@ class CounterWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.blue,
               )),
-         _tile(context, 'Home', '', Icons.home, _goHome),
+          _tile(context, 'Home', '', Icons.home, _goHome),
           new Divider(),
           new ListTile(
             title: new Text('About us'),
@@ -151,7 +150,8 @@ class CounterWidget extends StatelessWidget {
 
   void _contactus() async {
     print("Contact us...");
-    Navigator.of(context1).push(MaterialPageRoute(builder: (context) => ContactUs()));
+    Navigator.of(context1)
+        .push(MaterialPageRoute(builder: (context) => ContactUs()));
   }
 
   void _goHome() async {
@@ -160,27 +160,35 @@ class CounterWidget extends StatelessWidget {
 
   void _aboutus(BuildContext context1) async {
     print('about us..');
-    Navigator.push(context1,
-    MaterialPageRoute(builder: (context) => AboutUs()),); 
+    Navigator.push(
+      context1,
+      MaterialPageRoute(builder: (context) => AboutUs()),
+    );
   }
 
   void _termsConditions(BuildContext context1) async {
     print('terms and conditions..');
-    Navigator.push(context1,
-    MaterialPageRoute(builder: (context) => TermsConditions()),);  
+    Navigator.push(
+      context1,
+      MaterialPageRoute(builder: (context) => TermsConditions()),
+    );
   }
 
   //custom list tile
-  ListTile _tile(BuildContext context1, String title, String subtitle, IconData icon, VoidCallback methodname) => ListTile(
-      title: Text(title,),
-      subtitle: (subtitle.length == 0)? null : Text(subtitle),
-      onTap: () {
-            Navigator.pop(context1);
-            methodname();
-            },
-      leading: Icon(
-        icon,
-        color: Colors.blue[400],
-      ),
-    );
+  ListTile _tile(BuildContext context1, String title, String subtitle,
+          IconData icon, VoidCallback methodname) =>
+      ListTile(
+        title: Text(
+          title,
+        ),
+        subtitle: (subtitle.length == 0) ? null : Text(subtitle),
+        onTap: () {
+          Navigator.pop(context1);
+          methodname();
+        },
+        leading: Icon(
+          icon,
+          color: Colors.blue[400],
+        ),
+      );
 }

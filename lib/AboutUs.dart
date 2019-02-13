@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AboutUs extends StatelessWidget {
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -13,4 +13,3 @@ class AboutUs extends StatelessWidget {
     );
   }
 }
-
