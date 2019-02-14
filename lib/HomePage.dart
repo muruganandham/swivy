@@ -3,6 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swivy/counter_bloc.dart';
 import 'package:swivy/counter_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import './TermsConditions.dart';
+import './About.dart';
+import './ContactUs.dart';
 
 class HomePage extends StatefulWidget {
   final FirebaseUser fbuser;
@@ -40,14 +45,41 @@ class CounterWidget extends StatelessWidget {
 
   final HomePage widget;
 
+  BuildContext get context1 => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the home_page object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      drawer: new Drawer(
+          child: new ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          new DrawerHeader(
+              child: Center(child: Text('Drawer Header')),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              )),
+          _tile(context, 'About', '', FontAwesomeIcons.info, () {
+            Navigator.pop(context);
+            _aboutUs(context);
+          }),
+          new Divider(),
+          _tile(context, 'Contact Us', '', Icons.email, () {
+            Navigator.pop(context);
+            _contactUs(context);
+          }),
+          new Divider(),
+          _tile(context, 'Terms & Conditions', '', FontAwesomeIcons.fileAlt,
+              () {
+            Navigator.pop(context);
+            _termsConditions(context);
+          }),
+          new Divider(),
+        ],
+      )),
       body: BlocBuilder(
           bloc: BlocProvider.of<CounterBloc>(context),
           builder: (context, CounterState state) {
@@ -59,10 +91,13 @@ class CounterWidget extends StatelessWidget {
                     height: 10,
                   ),
                   Text("Hi, ${this.widget.fbuser.displayName}"),
+                  SizedBox(
+                    height: 10,
+                  ),
                   RaisedButton(
                     child: const Text('Log Out'),
                     onPressed: () {
-                      //logout
+                      // logout
                       this.widget.onTap();
                       Navigator.pop(context);
                     },
@@ -71,7 +106,7 @@ class CounterWidget extends StatelessWidget {
                     height: 40,
                   ),
                   Text(
-                    'You have pushed the button this many times:',
+                    'Your counter value is:',
                   ),
                   SizedBox(
                     height: 10,
@@ -108,4 +143,43 @@ class CounterWidget extends StatelessWidget {
       ),
     );
   }
+
+  // user defind methods
+
+  void _contactUs(BuildContext context1) async {
+    print("Contact Us...");
+    Navigator.push(
+        context1, MaterialPageRoute(builder: (context) => ContactUs()));
+  }
+
+  void _aboutUs(BuildContext context1) async {
+    print('About Us...');
+    Navigator.push(
+      context1,
+      MaterialPageRoute(builder: (context) => About()),
+    );
+  }
+
+  void _termsConditions(BuildContext context1) async {
+    print('Terms & Conditions...');
+    Navigator.push(
+      context1,
+      MaterialPageRoute(builder: (context) => TermsConditions()),
+    );
+  }
+
+  // custom list tile
+  ListTile _tile(BuildContext context, String title, String subtitle,
+          IconData icon, VoidCallback onTap) =>
+      ListTile(
+        title: Text(
+          title,
+        ),
+        subtitle: (subtitle.length == 0) ? null : Text(subtitle),
+        onTap: onTap,
+        leading: Icon(
+          icon,
+          color: Colors.grey[600],
+        ),
+      );
 }

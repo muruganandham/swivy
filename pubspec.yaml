@@ -33,7 +33,9 @@ dependencies:
   # Add the Firebase Core API + services
   firebase_core: ^0.3.0+1
   firebase_auth: ^0.8.0+3
-
+  # Add font awesome
+  font_awesome_flutter:
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter
