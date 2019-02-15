@@ -58,7 +58,8 @@ class CounterWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           new DrawerHeader(
-              child: Center(child: Text('Drawer Header')),
+              child: Center(child: _buildStack(),),
+              padding: EdgeInsets.only(),
               decoration: BoxDecoration(
                 color: Colors.blue,
               )),
@@ -144,6 +145,59 @@ class CounterWidget extends StatelessWidget {
     );
   }
 
+//   Widget _buildHeader => Container(
+//     child: Row(
+// children: <Widget>[
+//       CircleAvatar(
+//         backgroundImage: null,//AssetImage('images/pic.jpg'),
+//         radius: 100,
+//       ),
+//       SizedBox(
+//         height: 10,
+//       ),
+//       Container(
+//         decoration: BoxDecoration(
+//           color: Colors.black12,
+//         ),
+//         child: Text(
+//           widget.fbuser.displayName,
+//           style: TextStyle(
+//             fontSize: 20,
+//             fontWeight: FontWeight.bold,
+//             color: Colors.white,
+//           ),
+//         ),
+//       ),
+//     ],
+//   ),
+//   );
+
+  Widget _buildStack() => Stack(
+    alignment: const Alignment(0.1, 1.0),
+    children: [
+      CircleAvatar(
+        backgroundImage: null,//AssetImage('images/pic.jpg'),
+        radius: 100,
+      ),
+      SizedBox(
+        height: 10,
+      ),
+      Container(
+        decoration: BoxDecoration(
+          color: Colors.black12,
+        ),
+        child: Text(
+          widget.fbuser.displayName,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    ],
+  );
+  
   // user defind methods
 
   void _contactUs(BuildContext context1) async {
