@@ -46,6 +46,9 @@ class ContactUs extends StatelessWidget {
     );
   }
 
+  // UiKitView(
+  //    viewType: 'flutterC',
+  // ),
   // custom list tile
   ListTile _infotile(BuildContext context, String title, String subtitle,
           IconData icon, VoidCallback onTap) =>

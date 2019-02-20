@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
   final FirebaseUser fbuser;
   final VoidCallback onTap;
   final String title;
+  int _selectedIndex = 0;
 
   HomePage({Key key, this.title, @required this.fbuser, @required this.onTap})
       : super(key: key);
@@ -58,7 +59,9 @@ class CounterWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           new DrawerHeader(
-              child: Center(child: _buildStack(),),
+              child: Center(
+                child: _headerView(),
+              ),
               padding: EdgeInsets.only(),
               decoration: BoxDecoration(
                 color: Colors.blue,
@@ -120,6 +123,18 @@ class CounterWidget extends StatelessWidget {
               ),
             );
           }),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite), title: Text('Favorite')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.message), title: Text('Notifications')),
+        ],
+        currentIndex: this.widget._selectedIndex,
+        fixedColor: Colors.blue,
+        onTap: _onItemTapped,
+      ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -145,59 +160,32 @@ class CounterWidget extends StatelessWidget {
     );
   }
 
-//   Widget _buildHeader => Container(
-//     child: Row(
-// children: <Widget>[
-//       CircleAvatar(
-//         backgroundImage: null,//AssetImage('images/pic.jpg'),
-//         radius: 100,
-//       ),
-//       SizedBox(
-//         height: 10,
-//       ),
-//       Container(
-//         decoration: BoxDecoration(
-//           color: Colors.black12,
-//         ),
-//         child: Text(
-//           widget.fbuser.displayName,
-//           style: TextStyle(
-//             fontSize: 20,
-//             fontWeight: FontWeight.bold,
-//             color: Colors.white,
-//           ),
-//         ),
-//       ),
-//     ],
-//   ),
-//   );
-
-  Widget _buildStack() => Stack(
-    alignment: const Alignment(0.1, 1.0),
-    children: [
-      CircleAvatar(
-        backgroundImage: null,//AssetImage('images/pic.jpg'),
-        radius: 100,
-      ),
-      SizedBox(
-        height: 10,
-      ),
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.black12,
-        ),
-        child: Text(
-          widget.fbuser.displayName,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+  Widget _headerView() => Container(
+          child: Column(
+        children: <Widget>[
+          ClipOval(
+              child: Image.network(
+            widget.fbuser.photoUrl,
+            fit: BoxFit.cover,
+            width: 90.0,
+            height: 90.0,
+          )),
+          SizedBox(
+            height: 10,
           ),
-        ),
-      ),
-    ],
-  );
-  
+          Container(
+            child: Text(
+              widget.fbuser.displayName,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ));
+
   // user defind methods
 
   void _contactUs(BuildContext context1) async {
@@ -220,6 +208,13 @@ class CounterWidget extends StatelessWidget {
       context1,
       MaterialPageRoute(builder: (context) => TermsConditions()),
     );
+  }
+
+  void _onItemTapped(int index) {
+    //setState(() {
+    this.widget._selectedIndex = index;
+    print("item taped $index");
+    // });
   }
 
   // custom list tile
