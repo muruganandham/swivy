@@ -7,49 +7,46 @@ class ContactUs extends StatelessWidget {
       appBar: AppBar(
         title: Text('Contact Us'),
       ),
-      body: Center(
-        child: new ListView(
-          children: <Widget>[
-            SizedBox(
-              height: 270,
-              child: Card(
-                child: Column(
-                  children: [
-                     _infotile(
-                        context, '11 Wall Street', 'New York, NY', Icons.home,
-                        () {
-                      print("address");
-                    }),
-                    Divider(),
-                    _infotile(
-                        context, '+1 (408) 123-4567', '', Icons.phone,
-                        () {
-                      print("call the number");
-                    }),
-                    _infotile(
-                        context, 'swivy@example.org', '', Icons.email,
-                        () {
-                      print("email to open");
-                    }),
-                    _infotile(
-                        context, 'www.swivy-example.org', '', Icons.computer,
-                        () {
-                      print("website to open");
-                    }),
-                  ],
-                ),
+      body: new Column(
+        children: <Widget>[
+          SizedBox(
+            height: 270,
+            child: Card(
+              child: Column(
+                children: [
+                  _infotile(
+                      context, '11 Wall Street', 'New York, NY', Icons.home,
+                      () {
+                    print("address");
+                  }),
+                  Divider(),
+                  _infotile(context, '+1 (408) 123-4567', '', Icons.phone, () {
+                    print("call the number");
+                  }),
+                  _infotile(context, 'swivy@example.org', '', Icons.email, () {
+                    print("email to open");
+                  }),
+                  _infotile(
+                      context, 'www.swivy-example.org', '', Icons.computer, () {
+                    print("website to open");
+                  }),
+                ],
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+          SizedBox(
+            height: 300,
+            child: UiKitView(
+              viewType: 'FView',
+              onPlatformViewCreated: onPlatformViewCreated,
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  // UiKitView(
-  //    viewType: 'flutterC',
-  // ),
-  // custom list tile
+  //* custom list tile
   ListTile _infotile(BuildContext context, String title, String subtitle,
           IconData icon, VoidCallback onTap) =>
       ListTile(
@@ -61,4 +58,8 @@ class ContactUs extends StatelessWidget {
         ),
         onTap: onTap,
       );
+
+  Future<void> onPlatformViewCreated(id) async {
+    print("platform view created");
+  }
 }
