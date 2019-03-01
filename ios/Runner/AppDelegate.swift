@@ -10,7 +10,7 @@ import Flutter
         GeneratedPluginRegistrant.register(with: self)
         
         let fview = FViewFactory()
-        registrar(forPlugin: "FView1").register(fview, withId: "FView")
+        registrar(forPlugin: "FView1").register(fview, withId: "iOSView")
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }

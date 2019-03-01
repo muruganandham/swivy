@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 
 class ContactUs extends StatelessWidget {
   @override
@@ -36,10 +38,7 @@ class ContactUs extends StatelessWidget {
           ),
           SizedBox(
             height: 300,
-            child: UiKitView(
-              viewType: 'FView',
-              onPlatformViewCreated: onPlatformViewCreated,
-            ),
+            child: _getPlatformView(),
           ),
         ],
       ),
@@ -61,5 +60,35 @@ class ContactUs extends StatelessWidget {
 
   Future<void> onPlatformViewCreated(id) async {
     print("platform view created");
+  }
+
+  Widget _getPlatformView() {
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      return _getAndroidView();
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+      return _getiOSView();
+    } else {
+      return Center(
+        child: Text("Operating System is not supported"),
+      );
+    }
+  }
+
+  AndroidView _getAndroidView() {
+     return null;
+    //AndroidView(
+    //   viewType: 'androidView',
+    //   onPlatformViewCreated: onPlatformViewCreated,
+    // );
+  }
+
+  UiKitView _getiOSView() {
+    return UiKitView(
+      viewType: 'iOSView',
+      onPlatformViewCreated: onPlatformViewCreated,
+      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
+          Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer())
+        ].toSet(),
+    );
   }
 }

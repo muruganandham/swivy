@@ -9,7 +9,6 @@
 import UIKit
 import Flutter
 import MapKit
-//import WhirlyGlobe
 
 class FView: NSObject, FlutterPlatformView, MKMapViewDelegate {
     
@@ -33,10 +32,6 @@ class FView: NSObject, FlutterPlatformView, MKMapViewDelegate {
             // Fallback on earlier versions
         }
         return mapView;
-        
-        //        let baseView = MapviewViewController()
-        //        return baseView.view
-        
     }
 
     init(_ frame:CGRect, viewId: Int64, args:Any?) {
