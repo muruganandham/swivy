@@ -62,6 +62,13 @@ target 'Runner' do
     File.symlink(p[:path], symlink)
     pod p[:name], :path => File.join(symlink, 'ios')
   }
+  
+  #ios pods
+#  pod 'WhirlyGlobe'
+#  pod 'WhirlyGlobeResources'
+  pod 'OpenTok'
+  pod 'Mapbox-iOS-SDK'
+
 end
 
 post_install do |installer|

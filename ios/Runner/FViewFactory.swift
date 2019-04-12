@@ -12,6 +12,4 @@ class FViewFactory: NSObject, FlutterPlatformViewFactory {
     func create(withFrame frame: CGRect, viewIdentifier viewId: Int64, arguments args: Any?) -> FlutterPlatformView {
         return FView(frame, viewId: viewId, args: args)
     }
-    
-
 }

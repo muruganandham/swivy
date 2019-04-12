@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -61,6 +63,10 @@ class ContactUs extends StatelessWidget {
   Future<void> onPlatformViewCreated(id) async {
     print("platform view created");
   }
+  
+  Future<void> onAndroidPlatformViewCreated(id) async {
+    print("platform view created for android");
+  }
 
   Widget _getPlatformView() {
     if (defaultTargetPlatform == TargetPlatform.android) {
@@ -75,11 +81,13 @@ class ContactUs extends StatelessWidget {
   }
 
   AndroidView _getAndroidView() {
-     return null;
-    //AndroidView(
-    //   viewType: 'androidView',
-    //   onPlatformViewCreated: onPlatformViewCreated,
-    // );
+    return AndroidView(
+      viewType: 'androidView',
+      onPlatformViewCreated: onAndroidPlatformViewCreated,
+      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
+          Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer())
+        ].toSet(),
+    );
   }
 
   UiKitView _getiOSView() {

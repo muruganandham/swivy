@@ -125,7 +125,8 @@ class CounterWidget extends StatelessWidget {
           }),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+          BottomNavigationBarItem(
+             icon: Icon(Icons.home), title: Text('Home')),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite), title: Text('Favorite')),
           BottomNavigationBarItem(

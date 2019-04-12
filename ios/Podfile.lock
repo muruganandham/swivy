@@ -76,17 +76,21 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
+  - Mapbox-iOS-SDK (4.0.5)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - OpenTok (2.15.3)
 
 DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
+  - Mapbox-iOS-SDK
+  - OpenTok
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -101,7 +105,9 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - GoogleUtilities
     - GTMSessionFetcher
+    - Mapbox-iOS-SDK
     - nanopb
+    - OpenTok
 
 EXTERNAL SOURCES:
   firebase_auth:
@@ -129,8 +135,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  Mapbox-iOS-SDK: c6bab367011e441e7345d4fe9340633c6b476bf4
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  OpenTok: fde03ecc5ea31fe0a453242847c4ee1f47e1d735
 
-PODFILE CHECKSUM: 50fd7f7ecf6dbab9a7fd5b08340a6f74c872bf5a
+PODFILE CHECKSUM: f0c8273e3afcf36e10d0ea3c5295cb12224108da
 
 COCOAPODS: 1.6.0.beta.2

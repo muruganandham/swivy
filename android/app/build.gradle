@@ -40,6 +40,7 @@ android {
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -64,6 +65,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.3.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }
 
 // For Firebase Auth...
