@@ -27,13 +27,13 @@ you create a Firebase project and add iOS and Android apps. Refer to Google
 for detailed instructions on how to do this, but we hope the screenshots below
 will get you started:
 
-<img src="https://github.com/kanini/swivy/blob/master/screenshots/img1.png?raw=true" width="400" alt="Adding a Firebase Project" />
+<img src="https://github.com/fielda/swivy/blob/master/screenshots/img1.png?raw=true" width="400" alt="Adding a Firebase Project" />
 
-<img src="https://github.com/kanini/swivy/blob/master/screenshots/img2.png?raw=true" width="400" alt="Add an iOS and Android App to Your Firebase Project" />
+<img src="https://github.com/fielda/swivy/blob/master/screenshots/img2.png?raw=true" width="400" alt="Add an iOS and Android App to Your Firebase Project" />
 
-<img src="https://github.com/kanini/swivy/blob/master/screenshots/img3.png?raw=true" width="400" alt="Download Config File for iOS" />
+<img src="https://github.com/fielda/swivy/blob/master/screenshots/img3.png?raw=true" width="400" alt="Download Config File for iOS" />
 
-<img src="https://github.com/kanini/swivy/blob/master/screenshots/img4.png?raw=true" width="400" alt="Download Config File for Android" />
+<img src="https://github.com/fielda/swivy/blob/master/screenshots/img4.png?raw=true" width="400" alt="Download Config File for Android" />
 
 ## Certificate for Google Play Services
 
